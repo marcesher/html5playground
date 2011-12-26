@@ -1,0 +1,22 @@
+<!doctype html>
+
+<head>
+	<script>
+		calc = {
+			add : function( int, int2 ){
+				var result = parseInt(int) + parseInt(int2);
+				
+				return isNaN(result) ? '' : result;
+			}
+		};
+	</script>
+</head>
+
+<body>
+	<form onsubmit="return false" oninput="o.value = calc.add(a.value, b.value)">
+	  <input name="a" type="number" step="any"> +
+	  <input name="b" type="number" step="any"> =
+	  <output name="o"></output>
+	</form>
+
+</body>
