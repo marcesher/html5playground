@@ -1,0 +1,17 @@
+*{
+	font-family: Arial, Helvetica, sans-serif;
+}
+body {
+	background-color: #cccccc;
+}
+
+input {
+	font-size: 16px;
+}
+
+.outputTarget{
+	background-color: yellow;
+	font-weight: bold;
+	padding: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px;
+}

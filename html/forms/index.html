@@ -1,0 +1,57 @@
+<!doctype html>
+
+<head>
+	<link rel="stylesheet" href="../../css/main.css"/>
+	<script src="../../javascript/forms.js"></script>
+	
+
+</head>
+
+<body>
+	
+	<h1>Output Example</h1>
+	<form onsubmit="return false" oninput="o.value = calc.add(a.value, b.value)">
+	  <input name="a" type="number" step="any"> +
+	  <input name="b" type="number" step="any"> =
+	  <output name="o" class="outputTarget"></output>
+	</form>
+	
+	<h1>HTML5 Input Types</h1>
+	<p>http://www.w3schools.com/html5/html5_form_input_types.asp</p>
+	
+	<h2>Range</h2>
+	<form oninput="range_output.value = range.value">
+		<input type="range" name="range" min="0" max="50" value="25" step="1">
+		<output name="range_output" class="outputTarget"></output>
+	</form>
+	
+	<h2>Search</h2>
+	<form >
+		<p>Note how the "X" appears once you start typing</p>
+		<input type="search" name="search1" placeholder="Search me">
+	</form>
+	
+	<h2>Color</h2>
+	<p>So far, only supported in Opera</p>
+	<form oninput="color_output.value = color1.value">
+		<input type="color" name="color1" >
+		<output name="color_output" class="outputTarget"></output>
+	</form>
+	
+	<h2>Dates</h2>
+	<p>As of now, Chrome does not support date: http://www.chromium.org/developers/web-platform-status/forms</p>
+	<form oninput="date_output.value = date1.value; datetime_output.value = datetime1.value">
+		<input type="date" name="date1" value="12/23/2012">
+		<output name="date_output" class="outputTarget"></output>
+		<br>
+		<input type="datetime" name="datetime1" value="12/23/2012 8:00">
+		<output name="datetime_output" class="outputTarget"></output>
+		<br>
+	</form>
+	
+	
+	
+	<h1>More on changes to the INPUT tag</h1>
+	<p>http://www.w3schools.com/html5/tag_input.asp</p>
+
+</body>
