@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http=//www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <script type="text/javascript" src="../../lib/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="jquery-di-plugin-0.0.0.js"></script>
+</head>
+
+<body>
+
+<form>
+    <input type="button" value="Switch to English" onclick="controller.switchLanguages( true )" />
+    <input type="button" value="Switch to French" onclick="controller.switchLanguages( false )" />
+    <input type="button" value="Say Hello" onclick="controller.sayHello()" />
+</form>
+
+<script>
+    // Some services we'll inject
+    function HelloServiceFrench() {
+        this.sayHello = function()
+        {
+            return "Salut!";
+        }
+    }
+
+    function HelloServiceEnglish() {
+        this.sayHello = function()
+        {
+            return "Hi!";
+        }
+    }
+
+    // A controller
+    function HelloController() {
+        // Equivalent of [Inject], but it creates the injected property at runtime!
+        $().di.inject( this, "helloService", "helloService" );
+
+        this.sayHello = function ()
+        {
+            alert( this.helloService.sayHello() + " " + new Date() );
+        }
+
+        this.switchLanguages = function( useEnglish )
+        {
+            $().di.register( "helloService", useEnglish ? new HelloServiceEnglish() : new HelloServiceFrench());
+        }
+    }
+
+    // Bootstrapping
+    controller = new HelloController();
+
+    // Like Beans.mxml, we have to register beans with the DI engine
+    $().di.register( "helloService", new HelloServiceEnglish() );
+</script>
+</html>

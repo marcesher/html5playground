@@ -1,8 +1,8 @@
 <!doctype html>
 
 <head>
-	<link rel="stylesheet" href="../../css/main.css"/>
-	<script src="../../javascript/forms.js"></script>
+	<link rel="stylesheet" href="../../resources/css/main.css"/>
+	<script src="../../resources/javascript/forms.js"></script>
 	
 
 </head>
@@ -11,12 +11,13 @@
 	
 	<h1>Output Example</h1>
 	<form onsubmit="return false" oninput="o.value = calc.add(a.value, b.value)">
-	  <input name="a" type="number" step="any"> +
+	  <input name="a" type="number" step="any" autofocus="autofocus"> +
 	  <input name="b" type="number" step="any"> =
 	  <output name="o" class="outputTarget"></output>
 	</form>
 	
 	<h1>HTML5 Input Types</h1>
+	<p>http://playground.html5rocks.com/#form_fields</p>
 	<p>http://www.w3schools.com/html5/html5_form_input_types.asp</p>
 	
 	<h2>Range</h2>
@@ -49,7 +50,37 @@
 		<br>
 	</form>
 	
+	<h2>Email</h2>
+	<p>Notice how it's automatically validated when you submit</p>
+	<form>
+		<input type="email" name="email">
+		<input type="submit">
+	</form>
 	
+	<h2>URL</h2>
+	<p>Notice how it's automatically validated when you submit</p>
+	<form>
+		<input type="url" name="url">
+		<input type="submit">
+	</form>
+	
+	<h2>Pattern attribute for validation</h2>
+	<form>
+		<input type="text" name="anumber" pattern="\d{1,}" required="true">
+		<input type="submit">
+	</form>
+	
+	<h2>Datalist (no chrome yet)</h2>
+	<form>
+		<input list="people" name="p">
+		<datalist id="people">
+			<option value="Heather"></option>
+			<option value="Marc"></option>
+			<option value="Lexie"></option>
+			<option value="Sidney"></option>
+		</datalist>
+		
+	</form>
 	
 	<h1>More on changes to the INPUT tag</h1>
 	<p>http://www.w3schools.com/html5/tag_input.asp</p>
