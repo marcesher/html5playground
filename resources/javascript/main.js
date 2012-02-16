@@ -1,56 +1,44 @@
-play = {
+$(document).ready(function(){
 	
-	obj : {
-		one : 1,
-		two : 2
+	$('#geostatus').click(
+		function(){
+			if( !geo.watching ){
+				geo.startWatch();
+				this.value = 'Stop geo';
+			} else {
+				geo.clearCurrentWatch();
+				this.value = 'Start geo';
+			}
+		}
+	);	
+	
+});
+
+geo = {
+	watchId : 0,
+	watching : false,
+	watchOutputTarget : 'output',
+	startPosition : undefined,
+	currentPosition : undefined,
+	printPosition : function( position, id ){
+		$('#'+id).html(JSON.stringify(geo));
+		console.log(position);
 	},
 	
-	currentInjection : "",
-	
-	beans : {},
-	
-	as : function( prop ){
-		console.log(prop);
+	watchIt : function(position){
+		if( geo.startPosition == undefined ){
+			geo.startPosition = position;
+		}
+		geo.currentPosition = position;
+		geo.watching = true;
+		geo.printPosition(position, geo.watchOutputTarget);
 	},
-	
-	as2 : function( target ){
-		console.log(arguments);
-		
+	startWatch : function(){
+		 geo.watchId = navigator.geolocation.watchPosition( geo.watchIt );
 	},
-	
-	inject : function( name ){
-		this.beans[name] = 1;
-		this.beans[name].as = this.as;
-		this.beans[name].as2 = this.as2;
-		currentInjection = name;
-		return this;
-	},
-	
-	inject2 : function( name ){
-		this.beans[name] = {};
-		this.beans[name].as2 = this.as2;
-		currentInjection = name;
-		return this.beans[name];
-	},
-	
-	injectThings : function(){
-		//this.inject("one").as(this.one);
-		this.inject2("two").as2(this, "two");
-		this.inject2("two").as2(this.two);
-	},
-	
-	showMe : function( obj ){
-		console.log(obj);
-		console.log(this);
-	},
-	
-	applyPlay : function(){
-		this.showMe( {hi : 'mom'} );
-		
-		this.showMe( this );
-		
-		console.log('applying...');
-		this.showMe.apply( {scope : 'me'}, [{some : 'object'}]);
+	clearCurrentWatch : function(){
+		navigator.geolocation.clearWatch(geo.watchId);
+		geo.watching = false;
 	}
-	
 };
+
